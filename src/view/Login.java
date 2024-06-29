@@ -1,19 +1,13 @@
-/**
- * @author ferreiraluizga
- */
 package view;
 
-//imports
-import model.Administrador;
+import model.*;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
     public Login() {
         initComponents();
+        getRootPane().setDefaultButton(btnEntrar);
     }
 
     /**
@@ -34,7 +28,7 @@ public class Login extends javax.swing.JFrame {
         btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Developers.com: Login");
         setResizable(false);
 
         lblTitulo.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N

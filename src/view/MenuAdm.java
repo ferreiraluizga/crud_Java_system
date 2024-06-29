@@ -1,16 +1,12 @@
-/**
- * @author ferreiraluizga
- */
 package view;
 
-//imports
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class MenuAdm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuAdm
-     */
     public MenuAdm() {
         initComponents();
     }
@@ -24,7 +20,13 @@ public class MenuAdm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
+        ImageIcon background = new ImageIcon(getClass().getResource("/view/img/backgroundApp.jpg"));
+        Image image = background.getImage();
+        desktopPane = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         menuBar = new javax.swing.JMenuBar();
         menuUser = new javax.swing.JMenu();
         menuEncerrar = new javax.swing.JMenuItem();
@@ -32,10 +34,9 @@ public class MenuAdm extends javax.swing.JFrame {
         menuFunc = new javax.swing.JMenu();
         menuCadastrar = new javax.swing.JMenuItem();
         menuConsultar = new javax.swing.JMenuItem();
-        menuEditar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Cadastro de Desenvolvedores");
+        setTitle("Developers.com");
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
@@ -86,9 +87,6 @@ public class MenuAdm extends javax.swing.JFrame {
         });
         menuFunc.add(menuConsultar);
 
-        menuEditar.setText("Editar");
-        menuFunc.add(menuEditar);
-
         menuBar.add(menuFunc);
 
         setJMenuBar(menuBar);
@@ -128,7 +126,9 @@ public class MenuAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSairActionPerformed
 
     private void menuConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarActionPerformed
-
+        ConsultarDev c = new ConsultarDev();
+        desktopPane.add(c);
+        c.setVisible(true);
     }//GEN-LAST:event_menuConsultarActionPerformed
 
     /**
@@ -171,7 +171,6 @@ public class MenuAdm extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuCadastrar;
     private javax.swing.JMenuItem menuConsultar;
-    private javax.swing.JMenuItem menuEditar;
     private javax.swing.JMenuItem menuEncerrar;
     private javax.swing.JMenu menuFunc;
     private javax.swing.JMenuItem menuSair;

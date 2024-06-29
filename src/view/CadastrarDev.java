@@ -1,9 +1,5 @@
-/**
- * @author ferreiraluizga
- */
 package view;
 
-//imports
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,28 +9,17 @@ import model.*;
 
 public class CadastrarDev extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form CadastrarDev
-     */
     public CadastrarDev() {
         initComponents();
         formatarCampos();
-
-        //dicas nos botões
-        btnIncluir.setToolTipText("Cadastrar cliente no sistema");
-        btnLimpar.setToolTipText("Limpar dados escritos");
-        btnSair.setToolTipText("Sair do sistema");
     }
 
     private String setDataAtual() {
-        // data local do dispositivo
         LocalDate dataAtual = LocalDate.now();
 
-        // formatar data no formato dd/MM/yyyy
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dataFormatada = dataAtual.format(formatter);
 
-        // colocando a data local e formatada no campo que indica a data de cadastro
         return dataFormatada;
     }
     
@@ -50,7 +35,7 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
 
             MaskFormatter dataMask = new MaskFormatter("##/##/####");
             dataMask.setPlaceholderCharacter('_');
-            dataMask.install(txtDataNascimento);
+            dataMask.install(txtNascimento);
             
             MaskFormatter celularMask = new MaskFormatter("(##) #####-####");
             celularMask.setPlaceholderCharacter('_');
@@ -103,14 +88,15 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
         lblCelular = new javax.swing.JLabel();
         rdnViuvo = new javax.swing.JRadioButton();
         lblTelefone = new javax.swing.JLabel();
-        lblDataNascimento = new javax.swing.JLabel();
-        txtDataNascimento = new javax.swing.JFormattedTextField();
+        lblNascimento = new javax.swing.JLabel();
+        txtNascimento = new javax.swing.JFormattedTextField();
         txtCep = new javax.swing.JFormattedTextField();
         txtCelular = new javax.swing.JFormattedTextField();
         txtTelefone = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setTitle("Cadastrar Desenvolvedor");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnGroupCivil.add(rdnSolteiro);
         rdnSolteiro.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -220,8 +206,8 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
         lblTelefone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lblTelefone.setText("Telefone:");
 
-        lblDataNascimento.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        lblDataNascimento.setText("Data de Nascimento:");
+        lblNascimento.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lblNascimento.setText("Data de Nascimento:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,9 +221,9 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblDataNascimento)
+                        .addComponent(lblNascimento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(rdnIndefinido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -317,8 +303,8 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDataNascimento)
-                    .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNascimento)
+                    .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -384,57 +370,46 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        //variaveis para armazenar dados do usuário
-        String id, nome, endereco, bairro, complemento, cidade, estado, cep, celular, telefone, nascimento, cadastro, genero = "", estadoCivil = "", areas = "", dadosUsuario;
+        String nome, nascimento, genero, estadoCivil, areas, cep, endereco, bairro, complemento, estado, cidade, celular, telefone;
+        String cadastro = setDataAtual();
 
-        cadastro = setDataAtual();
-
-        //verificar se há um nome para registrar um usuário, se não houver, um alerta é emitido
         if (txtNome.getText().equals("")) {
-            dadosUsuario = "Para cadastrar um usuário, é necessário pelo menos seu nome."
-                    + "\nDigite um nome para proseguir.";
-            JOptionPane.showMessageDialog(rootPane, dadosUsuario, "Dados do Usuário", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Para cadastrar um usuário, é necessário pelo menos seu nome."
+                    + "\nDigite um nome para proseguir.", "Dados do Usuário", JOptionPane.WARNING_MESSAGE);
         } else {
-            //verificar se o campo está vazio, ou com dados inseridos pelo usuário
-            //obs: se o campo é vazio, na apresentação de resultados ele aparece como "não inserido"
-
-            //nome
+            
             if (txtNome.getText().equals("")) {
                 nome = null;
             } else {
                 nome = txtNome.getText();
             }
 
-            //data de nascimento
-            if (txtDataNascimento.getText().equals("  /  /    ")) {
+            if (txtNascimento.getText().equals("__/__/____")) {
                 nascimento = null;
             } else {
-                nascimento = txtDataNascimento.getText();
+                nascimento = txtNascimento.getText();
             }
 
-            //genero
-            if (rdnMasculino.isSelected() == false && rdnFeminino.isSelected() == false && rdnIndefinido.isSelected() == false) {
-                genero = null;
-            } else if (rdnMasculino.isSelected()) {
+            if (rdnMasculino.isSelected()) {
                 genero = "Masculino";
             } else if (rdnFeminino.isSelected()) {
                 genero = "Feminino";
             } else if (rdnIndefinido.isSelected()) {
                 genero = "Não Especificado";
+            } else {
+                genero = null;
             }
 
-            //estado civil
-            if (rdnSolteiro.isSelected() == false && rdnCasado.isSelected() == false && rdnViuvo.isSelected() == false) {
-                estadoCivil = null;
-            } else if (rdnSolteiro.isSelected()) {
+            if (rdnSolteiro.isSelected()) {
                 estadoCivil = "Solteiro(a)";
             } else if (rdnCasado.isSelected()) {
                 estadoCivil = "Casado(a)";
             } else if (rdnViuvo.isSelected()) {
                 estadoCivil = "Viúvo(a)";
+            } else {
+                estadoCivil = null;
             }
 
-            //areas de atuação
             String temp = "";
             if (checkFront.isSelected()) {
                 temp += checkFront.getText() + ", ";
@@ -460,90 +435,68 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
                 areas = temp.substring(0, temp.length() - 2);
             }
 
-            //cep
-            if (txtCep.getText().equals("     -   ")) {
+            if (txtCep.getText().equals("_____-___")) {
                 cep = null;
             } else {
                 cep = txtCep.getText();
             }
 
-            //endereco
             if (txtEndereco.getText().equals("")) {
                 endereco = null;
             } else {
                 endereco = txtEndereco.getText();
             }
 
-            //bairro
             if (txtBairro.getText().equals("")) {
                 bairro = null;
             } else {
                 bairro = txtBairro.getText();
             }
 
-            //complemento
             if (txtComplemento.getText().equals("")) {
                 complemento = null;
             } else {
                 complemento = txtComplemento.getText();
             }
 
-            //estado
             if (comboBoxEstado.getSelectedIndex() == 0) {
                 estado = null;
             } else {
                 estado = String.valueOf(comboBoxEstado.getSelectedItem());
             }
 
-            //cidade
             if (txtCidade.getText().equals("")) {
                 cidade = null;
             } else {
                 cidade = txtCidade.getText();
             }
 
-            //celular
-            if (txtCelular.getText().equals("(  )      -    ")) {
+            if (txtCelular.getText().equals("(__) _____-____")) {
                 celular = null;
             } else {
                 celular = txtCelular.getText();
             }
 
-            //telefone
-            if (txtTelefone.getText().equals("(  )     -    ")) {
+            if (txtTelefone.getText().equals("(__) ____-____")) {
                 telefone = null;
             } else {
                 telefone = txtTelefone.getText();
             }
 
-            new Desenvolvedor(nome, nascimento, genero, estadoCivil, areas, cep, endereco, bairro, complemento, estado, cidade, celular, telefone, cadastro).cadastrarDev();
+            new Desenvolvedor(nome, nascimento, genero, estadoCivil, areas, cep, endereco, 
+                    bairro, complemento, estado, cidade, celular, telefone, cadastro).cadastrarDev();
 
-            //limpando campos para próximo cadastro
-            txtNome.setText(null);
-            txtDataNascimento.setText(null);
-            btnGroupGenero.clearSelection();
-            btnGroupCivil.clearSelection();
-            checkFront.setSelected(false);
-            checkBack.setSelected(false);
-            checkFull.setSelected(false);
-            checkDados.setSelected(false);
-            checkAnalista.setSelected(false);
-            checkCloud.setSelected(false);
-            txtCep.setText(null);
-            txtEndereco.setText(null);
-            txtBairro.setText(null);
-            txtComplemento.setText(null);
-            comboBoxEstado.setSelectedIndex(0);
-            txtCidade.setText(null);
-            txtCelular.setText(null);
-            txtTelefone.setText(null);
+            limparCampos();
         }
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        //limpar campos de cadastro e colocando foco na primeira caixa de texto
+        limparCampos();
+    }//GEN-LAST:event_btnLimparActionPerformed
+    
+    public void limparCampos(){
         txtNome.setText(null);
-        txtDataNascimento.setText(null);
+        txtNascimento.setText(null);
         btnGroupGenero.clearSelection();
         btnGroupCivil.clearSelection();
         checkFront.setSelected(false);
@@ -560,8 +513,8 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
         txtCidade.setText(null);
         txtCelular.setText(null);
         txtTelefone.setText(null);
-    }//GEN-LAST:event_btnLimparActionPerformed
-
+    }
+    
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
@@ -585,10 +538,10 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCidade;
     private javax.swing.JLabel lblCivil;
     private javax.swing.JLabel lblComplemento;
-    private javax.swing.JLabel lblDataNascimento;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblGenero;
+    private javax.swing.JLabel lblNascimento;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTitulo;
@@ -604,8 +557,8 @@ public class CadastrarDev extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtComplemento;
-    private javax.swing.JFormattedTextField txtDataNascimento;
     private javax.swing.JTextField txtEndereco;
+    private javax.swing.JFormattedTextField txtNascimento;
     private javax.swing.JTextField txtNome;
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
