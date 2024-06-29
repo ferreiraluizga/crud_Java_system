@@ -9,6 +9,7 @@ Sistema desenvolvido em Java com integração em banco de dados Microsoft Sql Se
 - v3: projeto finalizado, com funcionalidades básicas de CRUD e autenticação de usuário
 
 ## funcionamento
-- pode-se usar o SSMS ou XAMPP (com servers Apache e MySql)
+- pode-se usar o SSMS ou XAMPP (com servers Apache e MySql); obs: para cada um há uma query específica para criação do banco de dados
 - para modificar a aplicação, abra na IDE de sua preferência (para desenvolvimento, utilizei o Apache NetBeans 22)
 - para utilizar a aplicação, baixe a pasta /dist e execute o arquivo "Sistema de Desenvolvedores"
+
