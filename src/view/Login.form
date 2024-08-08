@@ -74,7 +74,7 @@
           <Font name="SansSerif" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Login"/>
+        <Property name="text" type="java.lang.String" value="Developers.com: Login"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUser">

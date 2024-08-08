@@ -1,37 +1,32 @@
-package controller;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class Connect {
-    /* 
-    -- connection in my sql (xampp) --
+public class Connect { 
+    // connection in my sql (xampp) --
     
     public static Connection getConnection() {
-        String server = "localhost";
-        String database = "dbEmpresa";
-        String user = "root";
-        String password = "";
-        
-        String url = "jdbc:mysql://" + server + ":3306/" + database + "?useSSL=false&serverTimezone=UTC";
-        
+        Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(url, user, password);
-            return con;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e, "Erro", JOptionPane.ERROR_MESSAGE);
-            return null;
         } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Driver MySQL não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return null;
+            e.printStackTrace();
         }
+        try {
+            String url = "jdbc:mysql://localhost:3306/dbempresa?useSSL=false&serverTimezone=UTC";
+            String user = "root";
+            String password = "";
+            con = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro de Conexão", JOptionPane.ERROR_MESSAGE);
+        }
+        return con;
     }
-    */
     
-    // connection in sql server (ssms)
+    /* connection in sql server (ssms)
     public static Connection getConnection() {
         String server = "localhost:1433";
         String database = "dbEmpresa";
@@ -47,5 +42,6 @@ public class Connect {
             return null;
         }
     }
+    */
 
 }
