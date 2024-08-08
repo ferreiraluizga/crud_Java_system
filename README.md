@@ -1,5 +1,5 @@
 # crud_Java_system
-Sistema desenvolvido em Java com integração em banco de dados Microsoft Sql Server
+Sistema desenvolvido em Java com integração em banco de dados Microsoft Sql Server / MySql Server
 
 <img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=RED&style=for-the-badge"/>
 
@@ -13,3 +13,6 @@ Sistema desenvolvido em Java com integração em banco de dados Microsoft Sql Se
 - para modificar a aplicação, abra na IDE de sua preferência (para desenvolvimento, utilizei o Apache NetBeans 22)
 - para utilizar a aplicação, baixe a pasta /dist e execute o arquivo "Sistema de Desenvolvedores"
 
+## requisitos de funcionamento
+- JDK 17 ou mais atual
+- MySql Server (pode ser o Xampp ou o MySql Workbench) ou Sql Server (Microsoft)
