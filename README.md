@@ -7,6 +7,7 @@ Sistema desenvolvido em Java com integração em banco de dados Microsoft Sql Se
 - v1: primeira fase do projeto, onde as janelas principais foram feitas
 - v2: modelo MVC de projeto, autenticação de usuário e ação "cadastrar" integrada ao banco de dados
 - v3: projeto finalizado, com funcionalidades básicas de CRUD e autenticação de usuário
+- v4: correção do modelo MVC do projeto, e alterações no design e funcionamento das telas
 
 ## funcionamento
 - pode-se usar o SSMS ou XAMPP (com servers Apache e MySql); obs: para cada um há uma query específica para criação do banco de dados
